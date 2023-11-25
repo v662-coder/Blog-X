@@ -33,4 +33,4 @@ Your app is ready to be deployed!
 
 ### Deployment
 
-This section has moved here: https://6561e95aea7b15256bf3c991--regal-kringle-791d61.netlify.app/
+This section has moved here: https://blogapp-x.netlify.app/
