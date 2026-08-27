@@ -52,8 +52,8 @@ export default function ItemFormModal({ open, onClose, defaultCategory, editingI
   };
 
   return (
-    <div className="fixed inset-0 z-30 flex items-center justify-center bg-ink-950/50 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-md rounded-2xl border border-ink-900/10 bg-paper-50 p-5 shadow-2xl dark:border-paper-100/10 dark:bg-ink-800">
+  <div className="animate-fade-in fixed inset-0 z-30 flex items-center justify-center bg-ink-950/50 p-4 backdrop-blur-sm">
+  <div className="animate-pop-in w-full max-w-md rounded-2xl border border-ink-900/10 bg-paper-50 p-5 shadow-2xl dark:border-paper-100/10 dark:bg-ink-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-display text-xl font-semibold">
             {editingItem ? "Edit item" : "File a new item"}

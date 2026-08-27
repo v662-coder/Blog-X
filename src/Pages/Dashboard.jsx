@@ -67,9 +67,10 @@ export default function Dashboard() {
           </div>
           <button
             onClick={() => openModal(null)}
-            className="flex items-center gap-1.5 rounded-full bg-ink-900 px-4 py-2.5 text-sm font-semibold text-paper-100 shadow-card transition hover:bg-ink-700 dark:bg-wire dark:text-ink-950 dark:hover:bg-wire/90"
+            className="group flex items-center gap-1.5 rounded-full bg-ink-900 px-4 py-2.5 text-sm font-semibold text-paper-100 shadow-card transition hover:-translate-y-0.5 hover:bg-ink-700 dark:bg-wire dark:text-ink-950 dark:hover:bg-wire/90"
           >
-            <Plus size={15} /> New item
+            <Plus size={15} className="transition-transform duration-300 group-hover:rotate-90" />
+            New item
           </button>
         </div>
 
@@ -139,8 +140,14 @@ export default function Dashboard() {
             <EmptyState label="anything" onAdd={() => openModal(null)} />
           ) : (
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {filteredItems.slice(0, 12).map((item) => (
-                <ItemCard key={item.id} item={item} onEdit={openModal} showCategoryBadge />
+              {filteredItems.slice(0, 12).map((item, i) => (
+                <ItemCard
+                  key={item.id}
+                  item={item}
+                  onEdit={openModal}
+                  showCategoryBadge
+                  style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}
+                />
               ))}
             </div>
           )}

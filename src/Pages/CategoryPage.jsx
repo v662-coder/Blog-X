@@ -19,7 +19,6 @@ export default function CategoryPage() {
 
   const cat = getCategory(categoryId);
   const Icon = cat.icon;
-  
 
   const deskItems = useMemo(() => {
     let list = filteredItems.filter((i) => i.category === categoryId);
@@ -49,10 +48,11 @@ export default function CategoryPage() {
         </div>
         <button
           onClick={() => openModal(null)}
-          className="flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-card transition"
+          className="group flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-card transition hover:-translate-y-0.5"
           style={{ backgroundColor: cat.color }}
         >
-          <Plus size={15} /> Add to {cat.label}
+          <Plus size={15} className="transition-transform duration-300 group-hover:rotate-90" />
+          Add to {cat.label}
         </button>
       </div>
 
@@ -80,8 +80,13 @@ export default function CategoryPage() {
         <EmptyState label={cat.label} onAdd={() => openModal(null)} />
       ) : (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {deskItems.map((item) => (
-            <ItemCard key={item.id} item={item} onEdit={openModal} />
+          {deskItems.map((item, i) => (
+            <ItemCard
+              key={item.id}
+              item={item}
+              onEdit={openModal}
+              style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}
+            />
           ))}
         </div>
       )}

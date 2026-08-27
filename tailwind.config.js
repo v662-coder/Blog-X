@@ -1,94 +1,65 @@
 ﻿/** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  darkMode: 'class',  // Dark mode support
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
-      colors: {
-        primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-        },
-        secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-        },
-        accent: {
-          50: '#fdf4ff',
-          100: '#fae8ff',
-          200: '#f5d0fe',
-          300: '#f0abfc',
-          400: '#e879f9',
-          500: '#d946ef',
-          600: '#c026d3',
-          700: '#a21caf',
-          800: '#86198f',
-          900: '#701a75',
-        },
-        success: '#10b981',
-        warning: '#f59e0b',
-        danger: '#ef4444',
-        info: '#3b82f6',
-      },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ["Fraunces", "serif"],
+        body: ["IBM Plex Sans", "Inter", "system-ui", "sans-serif"],
+        mono: ["IBM Plex Mono", "monospace"],
+      },
+      colors: {
+        ink: {
+          950: "#0B0C11",
+          900: "#12141C",
+          800: "#1A1D28",
+          700: "#252938",
+          600: "#343A4D",
+        },
+        paper: {
+          50: "#FBFAF7",
+          100: "#F7F6F2",
+          200: "#EEEBE3",
+        },
+        wire: "#E8A33D",
+        desk: {
+          sports: "#2F8F5B",
+          health: "#E0556F",
+          technology: "#3E7CB1",
+          politics: "#8B5FBF",
+          entertainment: "#D9822B",
+          finance: "#1FA0A0",
+        },
+      },
+      boxShadow: {
+        card: "0 1px 2px rgba(18,20,28,0.06), 0 8px 24px -12px rgba(18,20,28,0.18)",
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-        'slide-down': 'slideDown 0.3s ease-out',
-        'bounce-slow': 'bounce 2s infinite',
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'spin-slow': 'spin 3s linear infinite',
-        'gradient': 'gradient 6s ease infinite',
-        'float': 'float 3s ease-in-out infinite',
+        "fade-in": "fadeIn 0.5s ease-out both",
+        "slide-up": "slideUp 0.4s ease-out both",
+        "pop-in": "popIn 0.25s cubic-bezier(0.34,1.56,0.64,1) both",
+        float: "float 3s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+          "0%": { transform: "translateY(16px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
-        slideDown: {
-          '0%': { transform: 'translateY(-20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        gradient: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
+        popIn: {
+          "0%": { transform: "scale(0.92)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
         },
         float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
   plugins: [],
-}
+};

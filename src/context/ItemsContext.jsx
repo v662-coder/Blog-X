@@ -8,7 +8,6 @@ import {
   onSnapshot,
   query,
   where,
-  orderBy,
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../firebase";
@@ -31,22 +30,38 @@ export function ItemsProvider({ children }) {
       return;
     }
     setLoading(true);
-    const q = query(
-      collection(db, COLLECTION),
-      where("userId", "==", user.uid),
-      orderBy("createdAt", "desc")
-    );
+
+    // IMPORTANT FIX: this used to be
+    //   query(collection(db, COLLECTION), where("userId","==", uid), orderBy("createdAt","desc"))
+    // A `where` on one field plus `orderBy` on a different field requires a
+    // Firestore *composite index* that a fresh project doesn't have yet.
+    // Firestore then rejects the query with a `failed-precondition` error,
+    // onSnapshot's error callback fires, items never populate `items` state,
+    // and — since the dashboard/graphs/lists all read from that same state —
+    // nothing you add ever shows up anywhere, even though the write itself
+    // succeeded in Firestore. Filtering by `userId` only avoids needing any
+    // composite index; we sort by date on the client instead (cheap, since
+    // this is a personal item list, not a huge dataset).
+    const q = query(collection(db, COLLECTION), where("userId", "==", user.uid));
+
     const unsubscribe = onSnapshot(
       q,
       (snap) => {
-        setItems(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+        const docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        docs.sort((a, b) => {
+          const aTime = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+          const bTime = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+          // Items just added via addDoc() haven't had their serverTimestamp
+          // resolved locally yet (createdAt is briefly null) — treat those
+          // as "now" so a brand-new item appears at the top immediately
+          // instead of flashing at the bottom until the server round-trip.
+          return (bTime || Date.now()) - (aTime || Date.now());
+        });
+        setItems(docs);
         setLoading(false);
         setError(null);
       },
       (err) => {
-        // Firestore throws "failed-precondition" if the composite index for
-        // this where+orderBy pair hasn't been created yet — the console
-        // link in err.message points straight to creating it.
         setError(err.message || "Couldn't load your items.");
         setLoading(false);
       }
