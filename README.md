@@ -1,9 +1,12 @@
 # The Desk — a categorized dashboard for Blog-X
-Live 🗳️:https://blog-x-u8gr.vercel.app/
+
 A dashboard-style rebuild of the original Blog-X app: six categorized
 "desks" (Sports, Health, Technology, Politics, Entertainment, Finance),
 full CRUD per desk, a dashboard with live charts, dark mode, global
 search, and Google Sign-In backed by Firebase.
+
+#
+Live 🗳️:https://blog-x-u8gr.vercel.app/
 
 ## Features
 
