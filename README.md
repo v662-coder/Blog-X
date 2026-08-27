@@ -5,6 +5,9 @@ A dashboard-style rebuild of the original Blog-X app: six categorized
 full CRUD per desk, a dashboard with live charts, dark mode, global
 search, and Google Sign-In backed by Firebase.
 
+
+Live 🗳️:https://blog-x-u8gr.vercel.app/
+
 ## Features
 
 - **Landing page** — public marketing page explaining the app, shown to
