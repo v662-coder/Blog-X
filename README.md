@@ -1,4 +1,6 @@
 # The Desk — a categorized dashboard for Blog-X
+Live - https://blog-x-u8gr.vercel.app/
+
 
 A dashboard-style rebuild of the original Blog-X app: six categorized
 "desks" (Sports, Health, Technology, Politics, Entertainment, Finance),
