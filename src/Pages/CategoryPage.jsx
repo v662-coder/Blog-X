@@ -19,6 +19,7 @@ export default function CategoryPage() {
 
   const cat = getCategory(categoryId);
   const Icon = cat.icon;
+  
 
   const deskItems = useMemo(() => {
     let list = filteredItems.filter((i) => i.category === categoryId);
