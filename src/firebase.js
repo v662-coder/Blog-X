@@ -1,24 +1,25 @@
-// Firebase v9 modular SDK setup — carried over from the existing app's
-// firebase-config.js so Auth/Firestore keep pointing at the same project
-// (same users, same "posts" data still readable from the old app).
-//
-// Firebase web config values are not secret; access is controlled by your
-// Firestore Security Rules and (optionally) API key restrictions in the
-// Google Cloud Console — not by hiding this file. Still, for a cleaner
-// setup we read from Vite env vars first and fall back to the literal
-// values so the app works out of the box. See .env.example.
+// Firebase v9 modular SDK setup for Vite
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+// Vite uses import.meta.env, NOT process.env
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAAAwsxAUiI8AVAWqs4hk399-N1BBOXIZQ",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "blogapp-a64c0.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "blogapp-a64c0",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "blogapp-a64c0.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "350390881066",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:350390881066:web:366dc32789a721e2f66c53",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
+
+// Optional: Check if variables are loaded (helps debugging)
+if (!firebaseConfig.apiKey) {
+  console.error(
+    'Missing Firebase environment variables.\n' +
+    'Make sure you have a .env file in the root with VITE_FIREBASE_* variables.'
+  );
+}
 
 const app = initializeApp(firebaseConfig);
 

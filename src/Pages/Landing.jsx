@@ -47,7 +47,7 @@ export default function Landing() {
   return (
     <div className="min-h-screen overflow-hidden bg-paper-100 dark:bg-ink-900">
       {/* ---------- Hero ---------- */}
-      <header className="relative mx-auto max-w-5xl px-4 pb-16 pt-10 text-center sm:pt-16">
+      <header className="relative mx-auto max-w-5xl px-4 pb-4 pt-10 text-center sm:pt-16">
         <div className="animate-fade-in mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-ink-900 text-wire shadow-card dark:bg-wire dark:text-ink-950">
           <Newspaper size={26} />
         </div>
@@ -109,6 +109,30 @@ export default function Landing() {
         </div>
       </header>
 
+      {/* ---------- 🔥 NEW: Developer Setup Notice (Highlighted) ---------- */}
+      <div className="animate-slide-up mx-auto max-w-4xl px-4 pb-2" style={{ animationDelay: "300ms" }}>
+        <div className="flex items-start gap-3 rounded-xl border border-amber-400/40 bg-amber-50/80 p-4 text-sm shadow-sm backdrop-blur-sm transition dark:border-amber-600/40 dark:bg-amber-950/30">
+          <span className="mt-0.5 text-xl">🛠️</span>
+          <div>
+            <span className="font-semibold text-amber-800 dark:text-amber-400">
+              Developer Setup Required:
+            </span>
+            <span className="text-ink-900/70 dark:text-paper-100/70">
+              {" "}To run this app, you must connect your own Firebase project. 
+              Add your{" "}
+              <code className="rounded bg-ink-900/10 px-1.5 py-0.5 font-mono text-xs font-semibold text-ink-900 dark:bg-paper-100/10 dark:text-paper-100">
+                VITE_FIREBASE_API_KEY
+              </code>
+              {" "}and other credentials to a{" "}
+              <code className="rounded bg-ink-900/10 px-1.5 py-0.5 font-mono text-xs font-semibold text-ink-900 dark:bg-paper-100/10 dark:text-paper-100">
+                .env
+              </code>
+              {" "}file in the root directory. Check the README for the full list of variables.
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* ---------- Feature grid ---------- */}
       <section className="mx-auto max-w-5xl px-4 pb-20">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -116,7 +140,7 @@ export default function Landing() {
             <div
               key={f.title}
               className="animate-slide-up rounded-2xl border border-ink-900/10 bg-paper-50 p-6 shadow-card transition hover:-translate-y-1 dark:border-paper-100/10 dark:bg-ink-800"
-              style={{ animationDelay: `${300 + i * 100}ms` }}
+              style={{ animationDelay: `${360 + i * 100}ms` }} // Delay shifted to accommodate notice
             >
               <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-wire/15 text-wire">
                 <f.icon size={18} />
